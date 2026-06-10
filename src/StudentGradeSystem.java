@@ -20,13 +20,13 @@ public class StudentGradeSystem {
 
         studentList.add(new Student(id, name, marks));
 
-        System.out.println("Record Added.");
+        System.out.println("Student Added Successfully.");
     }
 
     public static void viewStudents() {
 
         if(studentList.isEmpty()) {
-            System.out.println("No records available.");
+            System.out.println("No Students Available.");
             return;
         }
 
@@ -35,7 +35,10 @@ public class StudentGradeSystem {
         }
     }
 
-    public static void searchStudent(String id) {
+    public static void searchStudent() {
+
+        System.out.print("Enter Student ID: ");
+        String id = sc.nextLine();
 
         for(Student s : studentList) {
             if(s.getId().equalsIgnoreCase(id)) {
@@ -44,13 +47,13 @@ public class StudentGradeSystem {
             }
         }
 
-        System.out.println("Student not found.");
+        System.out.println("Student Not Found.");
     }
 
     public static void averageMarks() {
 
         if(studentList.isEmpty()) {
-            System.out.println("No records.");
+            System.out.println("No Students Available.");
             return;
         }
 
@@ -60,21 +63,54 @@ public class StudentGradeSystem {
             total += s.getMarks();
         }
 
-        System.out.println("Average Marks: " +
-                (total / studentList.size()));
+        double average = total / studentList.size();
+
+        System.out.println("Average Marks = " + average);
     }
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Student Grade Management System");
+        int choice;
 
-        addStudent();
-        viewStudents();
+        do {
 
-        // Search example
-        searchStudent("S001");
+            System.out.println("\n===== MENU =====");
+            System.out.println("1. Add Student");
+            System.out.println("2. Display Students");
+            System.out.println("3. Search Student");
+            System.out.println("4. Calculate Average");
+            System.out.println("5. Exit");
+            System.out.print("Select Option: ");
 
-        // Average marks
-        averageMarks();
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch(choice) {
+
+                case 1:
+                    addStudent();
+                    break;
+
+                case 2:
+                    viewStudents();
+                    break;
+
+                case 3:
+                    searchStudent();
+                    break;
+
+                case 4:
+                    averageMarks();
+                    break;
+
+                case 5:
+                    System.out.println("Program Closed.");
+                    break;
+
+                default:
+                    System.out.println("Invalid Option.");
+            }
+
+        } while(choice != 5);
     }
 }
