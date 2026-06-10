@@ -35,11 +35,46 @@ public class StudentGradeSystem {
         }
     }
 
+    public static void searchStudent(String id) {
+
+        for(Student s : studentList) {
+            if(s.getId().equalsIgnoreCase(id)) {
+                System.out.println(s);
+                return;
+            }
+        }
+
+        System.out.println("Student not found.");
+    }
+
+    public static void averageMarks() {
+
+        if(studentList.isEmpty()) {
+            System.out.println("No records.");
+            return;
+        }
+
+        double total = 0;
+
+        for(Student s : studentList) {
+            total += s.getMarks();
+        }
+
+        System.out.println("Average Marks: " +
+                (total / studentList.size()));
+    }
+
     public static void main(String[] args) {
 
         System.out.println("Welcome to Student Grade Management System");
 
         addStudent();
         viewStudents();
+
+        // Search example
+        searchStudent("S001");
+
+        // Average marks
+        averageMarks();
     }
 }
