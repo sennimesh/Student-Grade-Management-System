@@ -23,10 +23,23 @@ public class StudentGradeSystem {
         System.out.println("Record Added.");
     }
 
+    public static void viewStudents() {
+
+        if(studentList.isEmpty()) {
+            System.out.println("No records available.");
+            return;
+        }
+
+        for(Student s : studentList) {
+            System.out.println(s);
+        }
+    }
+
     public static void main(String[] args) {
 
         System.out.println("Welcome to Student Grade Management System");
 
         addStudent();
+        viewStudents();
     }
 }
